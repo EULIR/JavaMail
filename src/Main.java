@@ -9,8 +9,8 @@ public class Main
 	{
 		Scanner s = new Scanner(System.in);
 		Mail mail = new Mail();
-		System.out.println("Who would you like to send the email for(you should have at least one receiver)? Split addresses with \",\")");
-		mail.addTo(s.nextLine().split(","));
+		System.out.println("Who would you like to send the email for?");
+		mail.addTo(s.nextLine());
 		System.out.println("What is your email address?");
 		mail.addFrom(s.nextLine());
 		System.out.println("Please enter the password of your email.");

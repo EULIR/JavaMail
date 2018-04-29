@@ -15,7 +15,7 @@ import java.util.Properties;
 
 public class Mail
 {
-	private String[] to;
+	private String to;
 	private String from;
 	private String host;
 	private String password;
@@ -35,7 +35,7 @@ public class Mail
 		this.host = null;
 	}
 
-	public void addTo(String[] to)
+	public void addTo(String to)
 	{
 		this.to = to;
 	}
@@ -101,8 +101,7 @@ public class Mail
 		{
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
-			for (String aTo : to)
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress(aTo));
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			if (this.CC.length != 0)
 				for (String aCC : this.CC)
 					message.addRecipient(Message.RecipientType.CC, new InternetAddress(aCC));
