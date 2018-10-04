@@ -43,6 +43,7 @@ public class Batch {
 		String content = readText("mail_info/content.txt");
 		to.forEach(aTo -> {
 			Mail mail = new Mail();
+			mail.isHTML(false);
 			mail.addFrom("");
 			mail.enterPassword("");
 			mail.addSubject(subject);

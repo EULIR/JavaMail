@@ -27,6 +27,7 @@ public class Mail {
 	private String text;
 	private boolean addAttachment;
 	private String fileName;
+	private boolean html;
 
 	public Mail() {
 		this.to = null;
@@ -71,6 +72,10 @@ public class Mail {
 		this.fileName = fileName;
 	}
 
+	public void isHTML(boolean is) {
+		html = is;
+	}
+
 	public void send() throws GeneralSecurityException {
 		Properties properties = System.getProperties();
 		properties.setProperty("mail.smtp.host", host);
@@ -105,8 +110,16 @@ public class Mail {
 				messageBodyPart.setDataHandler(new DataHandler(source));
 				messageBodyPart.setFileName(fileName);
 				multipart.addBodyPart(messageBodyPart);
-				message.setContent(multipart);
-			} else message.setText(text);
+				if (html) message.setContent(multipart, "text/html");
+				else message.setContent(multipart);
+			} else {
+				Multipart multipart = new MimeMultipart();
+				BodyPart messageBodyPart = new MimeBodyPart();
+				messageBodyPart.setText(text);
+				multipart.addBodyPart(messageBodyPart);
+				if (html) message.setContent(multipart, "text/html");
+				else message.setContent(multipart);
+			}
 			Transport.send(message);
 			System.out.println("Sent message successfully");
 		} catch (MessagingException mex) {

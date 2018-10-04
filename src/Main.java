@@ -9,6 +9,7 @@ public class Main {
 	public static void main(String[] args) throws GeneralSecurityException {
 		Scanner s = new Scanner(System.in);
 		Mail mail = new Mail();
+		mail.isHTML(false);
 		System.out.println("Who would you like to send the email for?");
 		mail.addTo(s.nextLine());
 		System.out.println("What is your email address?");
@@ -29,7 +30,8 @@ public class Main {
 			String[] bcc = s.nextLine().split(",");
 			ArrayList<String> sbcc = new ArrayList<>();
 			Collections.addAll(sbcc, bcc);
-			mail.setCC(sbcc);;
+			mail.setCC(sbcc);
+			;
 		} else mail.setBCC(new ArrayList<>());
 		System.out.println("What is your subject of the email?");
 		mail.addSubject(s.nextLine());
