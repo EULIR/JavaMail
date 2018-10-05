@@ -37,21 +37,20 @@ public class Batch {
 	}
 
 	public static void main(String[] args) {
-		ArrayList<String> to;
-		to = readAddress("/mail_info/to.txt");
-		String subject = readText("/mail_info/subject.txt");
+		ArrayList<String> to = readAddress("mail_info/to.txt");
+		String subject = readText("mail_info/subject.txt");
 		String content = readText("mail_info/content.txt");
 		to.forEach(aTo -> {
 			Mail mail = new Mail();
 			mail.isHTML(false);
-			mail.addFrom("");
-			mail.enterPassword("");
+			mail.addFrom("runmingli_edu@163.com");
+			mail.enterPassword("andy87397891");
 			mail.addSubject(subject);
 			mail.addText(content);
 			mail.setCC(new ArrayList<>());
 			mail.setBCC(new ArrayList<>());
 			mail.addTo(aTo);
-			mail.addAttachment("/mail_info/");
+			mail.addAttachment("mail_info/attachment.txt");
 			try {
 				mail.send();
 			} catch (GeneralSecurityException e) {
