@@ -43,8 +43,8 @@ public class Batch {
 		to.forEach(aTo -> {
 			Mail mail = new Mail();
 			mail.isHTML(false);
-			mail.addFrom("runmingli_edu@163.com");
-			mail.enterPassword("andy87397891");
+			mail.addFrom("");
+			mail.enterPassword("");
 			mail.addSubject(subject);
 			mail.addText(content);
 			mail.setCC(new ArrayList<>());
